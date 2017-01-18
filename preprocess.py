@@ -21,7 +21,9 @@ def __parse_midi(data_fn):
     # Parse the MIDI data for separate melody and accompaniment parts.
     midi_data = converter.parse(data_fn)
     # Get melody part, compress into single voice.
-    melody_stream = midi_data[5]     # For Metheny piece, Melody is Part #5.
+
+    # we need to determine the melody of our prodigy piece
+    melody_stream = midi_data[2]     # For Metheny piece, Melody is Part #5.
     melody1, melody2 = melody_stream.getElementsByClass(stream.Voice)
     for j in melody2:
         melody1.insert(j.offset, j)
@@ -40,7 +42,9 @@ def __parse_midi(data_fn):
     # the original data. Maybe add more parts, hand-add valid instruments.
     # Should add least add a string part (for sparse solos).
     # Verified are good parts: 0, 1, 6, 7 '''
-    partIndices = [0, 1, 6, 7]
+
+    # hardcoded accompaniment parts
+    partIndices = [1, 3, 4, 8, 10] # [0, 1, 6, 7]
     comp_stream = stream.Voice()
     comp_stream.append([j.flat for i, j in enumerate(midi_data) 
         if i in partIndices])

@@ -19,6 +19,8 @@ def __is_scale_tone(chord, note):
 
     # Derive major or minor scales (minor if 'other') based on the quality
     # of the chord.
+
+    # This is where we select our scale type to start
     scaleType = scale.DorianScale() # i.e. minor pentatonic
     if chord.quality == 'major':
         scaleType = scale.MajorScale()
@@ -59,6 +61,8 @@ def __generate_chord_tone(lastChord):
 def __generate_scale_tone(lastChord):
     # Derive major or minor scales (minor if 'other') based on the quality
     # of the lastChord.
+
+    # this is another place where we choose our scaleType
     scaleType = scale.WeightedHexatonicBlues() # minor pentatonic
     if lastChord.quality == 'major':
         scaleType = scale.MajorScale()
