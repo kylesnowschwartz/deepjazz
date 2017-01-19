@@ -18,6 +18,8 @@ GPU run command:
 from __future__ import print_function
 import sys
 
+import sys
+sys.path.append("/opt/music21-3.1.0/")
 from music21 import *
 import numpy as np
 
@@ -163,7 +165,7 @@ def generate(data_fn, out_fn, N_epochs):
 
     # Play the final stream through output (see 'play' lambda function above)
     play = lambda x: midi.realtime.StreamPlayer(x).play()
-    play(out_stream)
+    #play(out_stream)
 
     # save stream
     mf = midi.translate.streamToMidiFile(out_stream)
@@ -180,8 +182,8 @@ def main(args):
         N_epochs = 128 # default
 
     # i/o settings
-    # data_fn = 'midi/' + 'original_metheny.mid' # 'And Then I Knew' by Pat Metheny 
-    # out_fn = 'midi/' 'deepjazz_on_metheny...' + str(N_epochs)
+    #data_fn = 'midi/' + 'original_metheny.mid' # 'And Then I Knew' by Pat Metheny 
+    #out_fn = 'midi/' 'deepjazz_on_metheny...' + str(N_epochs)
     data_fn = 'midi/' + 'YouLove.mid' # 'And Then I Knew' by Pat Metheny 
     out_fn = 'midi/' 'deepjazz_on_prodigy...' + str(N_epochs)
     if (N_epochs == 1): out_fn += '_epoch.midi'
